@@ -25,12 +25,19 @@ def get_socket_limit_number(socket_number):
         if len(data["p_change"].values) < 10:
             default_length = len(data["p_change"].values) 
     except:
-        print("获取p_change的values失败,股票代码为:",socket_number)        
+        print("获取p_change的values长度失败,股票代码为:",socket_number)
+        return limit_number
+
     for i in range(default_length):
-        if data["p_change"].values[i]>= 9.9:
-            limit_number = limit_number + 1
-        else:
-            break
+        value = data["p_change"].values[i]
+        try: 
+            if data["p_change"].values[i]>= 9.9:
+                limit_number = limit_number + 1
+            else:
+                break
+        except:
+            print("获取p_change的values失败，股票代码为:",socket_number)  
+            break  
     return limit_number
 
 # 获取a股所有上市的涨停板列表
