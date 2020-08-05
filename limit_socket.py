@@ -37,18 +37,17 @@ def get_socket_limit_number(socket_number):
 def get_limit_socket_data(sockets_dict):
     today = time.strftime("%Y-%m-%d", time.localtime())
     file_name = "socket_limit_number_" + today +".csv"
-    with open(file_name,'wb') as f:
+    with open(file_name,'w') as f:
         csv_write = csv.writer(f)
         csv_head = ["股票代码","股票名","涨停次数"]
         csv_write.writerow(csv_head)
-    
-    for key in sockets_dict:
-        print(key)
-        number = get_socket_limit_number(key)
-        if number >= 2:
-            print("股票代码:",key,"股票名:",sockets_dict[key],"涨停次数:",number)
-            content = [key,sockets_dict[key],str(number)]
-            csv_write.writerow(content)
+        for key in sockets_dict:
+            print(key)
+            number = get_socket_limit_number(key)
+            if number >= 2:
+                print("股票代码:",key,"股票名:",sockets_dict[key],"涨停次数:",number)
+                content = [key,sockets_dict[key],str(number)]
+                csv_write.writerow(content)
     f.close()
 
 if __name__ == "__main__":
