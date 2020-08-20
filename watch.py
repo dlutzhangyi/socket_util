@@ -16,7 +16,7 @@ import sys
 
 if __name__ == "__main__":
     while True:
-        code=["600859"]
+        code=["600895"]
         dataNow=tushare.get_realtime_quotes(code)
         # print(dataNow) 
         for i in range(len(code)) :
